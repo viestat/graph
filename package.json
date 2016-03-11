@@ -1,0 +1,14 @@
+{
+  "name": "graph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "graph.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andres C. Viesca",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^3.5.16"
+  }
+}
