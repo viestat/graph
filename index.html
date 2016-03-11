@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="./node_modules/d3/d3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+  <script type="text/javascript" src="./graph.js"></script>
+  <title>Graphs</title>
+</head>
+<body>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-offset-4 col-md-4">
+            <h1 class="text-center">Graphs!!</h1>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Add Node:</h4>
+              <form>
+                <div class="form-group">
+                  <label for="nodeVal">Node</label>
+                  <input type="text" class="form-control" id="nodeVal" placeholder="Value">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Node</button>
+              </form>
+            </div>
+            <div class="col-md-12">
+              <h4>Add Edge:</h4>
+              <form>
+                <div class="form-group">
+                  <label for="fromLbl">From:</label>
+                  <input class="form-control" id="fromLbl" placeholder="Node Value">
+                </div>
+                <div class="form-group">
+                  <label for="toLbl">To:</label>
+                  <input class="form-control" id="toLbl" placeholder="Node Value">
+                </div>
+                <div class="form-group">
+                  <label for="weightLbl">Weigth:</label>
+                  <input class="form-control" id="weightLbl" placeholder="Number">
+                </div>
+
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Directed
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-success">Add Edge</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8" id="content">
+          <h2 class="text-center" >Content</h2>
+        </div>
+        <div class="col-md-2">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Remove Node:</h4>
+              <form>
+                <div class="form-group">
+                  <label for="nodeVal">Node</label>
+                  <input type="text" class="form-control" id="nodeVal" placeholder="Value">
+                </div>
+                <button type="submit" class="btn btn-danger">Remove Node</button>
+              </form>
+            </div>
+            <div class="col-md-12">
+              <h4>Remove Edge:</h4>
+              <form >
+                <div class="form-group">
+                  <label for="fromLbl">From:</label>
+                  <input class="form-control" id="fromLbl" placeholder="Node Value">
+                </div>
+                <div class="form-group">
+                  <label for="toLbl">To:</label>
+                  <input class="form-control" id="toLbl" placeholder="Node Value">
+                </div>
+                <div class="form-group">
+                  <label for="weightLbl">Weigth:</label>
+                  <input class="form-control" id="weightLbl" placeholder="Number">
+                </div>
+
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Directed
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-warning">Remove Edge</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <script type="text/javascript" src="./app.js"></script>
+</body>
+</html>
