@@ -12,6 +12,7 @@ Graph.prototype.addNode = function(val){
   if(!exists){
     this.nodes.push([val,[]]);
   }
+  return !exists;
 }
 
 
@@ -47,4 +48,19 @@ Graph.prototype.addEdge = function(node1, node2, w, directed){
     }
   });
 }
+
+Graph.prototype.removeEdge = function(node1, node2){
+
+  this.nodes.forEach(function(el){
+    if(el[0] === node1){
+      el[1].forEach(function(edge, i){
+        if(edge[0] === node2){
+          el[1].splice(i,1);
+        }
+      });
+    }
+  });
+}
+
+
 //[val,[[edge, w]...]]

@@ -19,36 +19,36 @@
           <div class="row">
             <div class="col-md-12">
               <h4>Add Node:</h4>
-              <form>
+              <form onsubmit="return false">
                 <div class="form-group">
                   <label for="nodeVal">Node</label>
-                  <input type="text" class="form-control" id="nodeVal" placeholder="Value">
+                  <input type="text" class="form-control" id="addNodeV" placeholder="Value">
                 </div>
-                <button type="submit" class="btn btn-primary">Add Node</button>
+                <button type="submit" class="btn btn-primary" onclick="addNode()">Add Node</button>
               </form>
             </div>
             <div class="col-md-12">
               <h4>Add Edge:</h4>
-              <form>
+              <form onsubmit="return false">
                 <div class="form-group">
                   <label for="fromLbl">From:</label>
-                  <input class="form-control" id="fromLbl" placeholder="Node Value">
+                  <input class="form-control" id="addFrom" placeholder="Node Value">
                 </div>
                 <div class="form-group">
                   <label for="toLbl">To:</label>
-                  <input class="form-control" id="toLbl" placeholder="Node Value">
+                  <input class="form-control" id="addTo" placeholder="Node Value">
                 </div>
                 <div class="form-group">
                   <label for="weightLbl">Weigth:</label>
-                  <input class="form-control" id="weightLbl" placeholder="Number">
+                  <input class="form-control" id="addW" placeholder="Number (optional)">
                 </div>
 
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> Directed
+                    <input type="checkbox" id="directed"> Directed
                   </label>
                 </div>
-                <button type="submit" class="btn btn-success">Add Edge</button>
+                <button type="submit" onclick="addEdge()" class="btn btn-success">Add Edge</button>
               </form>
             </div>
           </div>
@@ -60,36 +60,26 @@
           <div class="row">
             <div class="col-md-12">
               <h4>Remove Node:</h4>
-              <form>
+              <form onsubmit="return false">
                 <div class="form-group">
                   <label for="nodeVal">Node</label>
-                  <input type="text" class="form-control" id="nodeVal" placeholder="Value">
+                  <input type="text" class="form-control" id="rmNodeV" placeholder="Value">
                 </div>
-                <button type="submit" class="btn btn-danger">Remove Node</button>
+                <button type="submit" onclick="rmNode()" class="btn btn-danger">Remove Node</button>
               </form>
             </div>
             <div class="col-md-12">
               <h4>Remove Edge:</h4>
-              <form >
+              <form onsubmit="return false">
                 <div class="form-group">
                   <label for="fromLbl">From:</label>
-                  <input class="form-control" id="fromLbl" placeholder="Node Value">
+                  <input class="form-control" id="rmFrom" placeholder="Node Value">
                 </div>
                 <div class="form-group">
                   <label for="toLbl">To:</label>
-                  <input class="form-control" id="toLbl" placeholder="Node Value">
+                  <input class="form-control" id="rmTo" placeholder="Node Value">
                 </div>
-                <div class="form-group">
-                  <label for="weightLbl">Weigth:</label>
-                  <input class="form-control" id="weightLbl" placeholder="Number">
-                </div>
-
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Directed
-                  </label>
-                </div>
-                <button type="submit" class="btn btn-warning">Remove Edge</button>
+                <button type="submit" onclick="rmEdge()" class="btn btn-warning">Remove Edge</button>
               </form>
             </div>
           </div>
