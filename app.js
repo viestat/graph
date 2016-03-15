@@ -13,6 +13,17 @@ var svg = d3.select('#content').append('svg')
     .attr('height', 472)
     .attr('class', 'img-fluid');
 
+svg.append('svg:defs').append('svg:marker')
+    .attr('id', 'end-arrow')
+    .attr('viewBox', '0 -5 10 10')
+    .attr('refX', 6)
+    .attr('markerWidth', 3)
+    .attr('markerHeight', 3)
+    .attr('orient', 'auto')
+    .append('svg:path')
+    .attr('d', 'M0,-5L10,0L0,5')
+    .attr('fill', '#000');
+
 var nodes = [];
 var links = [];
 
@@ -33,15 +44,17 @@ var node = svg.selectAll(".node")
 
 
 
-var link = svg.selectAll(".link");
+var path = svg.append('svg:g').selectAll('path');
 
   
 function start() {
   force.nodes(nodes);
   force.links(links);
-  link = link.data(force.links(), function(d) { return d.source.id + "-" + d.target.id; });
-  link.enter().insert("line", ".node").attr("class", "link");
-  link.exit().remove();
+  path = path.data(force.links());
+  path.enter().append('svg:path')
+    .attr('class', 'link')
+    .style('marker-end','url(#end-arrow)')
+  path.exit().remove();
 
   node = node.data(force.nodes(), function(d) { return d.id;});
   node.enter().append("g").attr("class", function(d) { return "node " + d.id; }).call(force.drag);
@@ -61,10 +74,20 @@ function start() {
 function tick() {
   node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-  link.attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
+  path.attr('d', function(d) {
+    var deltaX = d.target.x - d.source.x,
+        deltaY = d.target.y - d.source.y,
+        dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
+        normX = deltaX / dist,
+        normY = deltaY / dist,
+        sourcePadding = d.left ? 17 : 12,
+        targetPadding = d.right ? 17 : 12,
+        sourceX = d.source.x + (sourcePadding * normX),
+        sourceY = d.source.y + (sourcePadding * normY),
+        targetX = d.target.x - (targetPadding * normX),
+        targetY = d.target.y - (targetPadding * normY);
+    return 'M' + sourceX + ',' + sourceY + 'L' + targetX + ',' + targetY;
+  });
 }
 
 
