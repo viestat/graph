@@ -125,15 +125,19 @@ function rmEdge(){
 function updateGraph(){
   //idMap is an object that stores id's as keys and the value as the position of that node in the nodes array
   var idMap = {};
+  links = []; 
+  nodes = [];
+  //remove all nodes and links
+  start();
   nodes = graph.nodes.map(function(el){
     return {id: el[0]}
   });
+  //after checking with the the source add them again
   start();
   nodes.forEach(function(a){idMap[a.id] = a.index});
-  links = [] 
   graph.nodes.forEach(function(el){
     el[1].forEach(function(a){
-      links.push({source: nodes[idMap[el[0]]], target: nodes[idMap[a[0]]]});
+      links.push({source: nodes[idMap[el[0]]], target: nodes[idMap[a[0]]], w: a[1]});
     })
   })
   start();
