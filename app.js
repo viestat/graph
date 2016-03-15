@@ -123,24 +123,19 @@ function rmEdge(){
   }
 }
 function updateGraph(){
-  var lik = {};
+  //idMap is an object that stores id's as keys and the value as the position of that node in the nodes array
+  var idMap = {};
   nodes = graph.nodes.map(function(el){
     return {id: el[0]}
   });
   start();
-  nodes.forEach(function(a){lik[a.id] = a.index});
-  console.log(lik);
-  links = graph.nodes.map(function(el){
-    return el[1].map(function(a){
-      return {source: nodes[lik[el[0]]], target: nodes[lik[a[0]]]}
+  nodes.forEach(function(a){idMap[a.id] = a.index});
+  links = [] 
+  graph.nodes.forEach(function(el){
+    el[1].forEach(function(a){
+      links.push({source: nodes[idMap[el[0]]], target: nodes[idMap[a[0]]]});
     })
   })
-  .filter(function(b){
-    return b.length
-  })
-  .map(function(a){
-    return a[0]
-  });
   start();
 }
 
