@@ -1,16 +1,26 @@
 {
   "name": "graph",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a graph visualisation that uses d3's force layout.",
   "main": "graph.js",
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Andres C. Viesca",
+  "author": "Andrés C. Viesca",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "d3": "^3.5.16"
-  }
+    "d3": "^3.5.16",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viestat/graph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/viestat/graph/issues"
+  },
+  "homepage": "https://github.com/viestat/graph#readme"
 }
