@@ -63,6 +63,12 @@ function start() {
   node.enter().append("g").attr("class", function(d) { return "node " + d.id; }).call(force.drag);
   node.append("circle")
       .attr("r", 8)
+      .style("fill",function(d){
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")";
+      })
 
   node.append("text")
     .attr("dx", 12)
@@ -75,15 +81,13 @@ function start() {
   linktext.enter().append("g").attr("class", "linklabelholder")
      .append("text")
      .attr("class", "linklabel")
-     .style("font-size", "13px")
-     .attr("x", function(d) {return 45})
+     .attr("x", function(d) {return 40})
      .attr("dy", "14")
      .attr("text-anchor", "start")
-     .style("fill","#000")
      .append("textPath")
      .attr("xlink:href",function(d) {return "#linkId_" + Math.floor((d.target.x + d.source.x) + (d.target.y + d.source.y));})
      .text(function(d) { 
-        return d.w; 
+        return "w: " + d.w; 
      });
   linktext.exit().remove();
 

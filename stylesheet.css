@@ -7,18 +7,22 @@
 }
 
 
-.node circle {
-    fill: #ccc;
-    stroke: #fff;
-    stroke-width: 2px;
-}
-
 .link {
-    stroke: black;
+    stroke: rgb(154, 154, 154);
     stroke-width: 2px;
 }
 
-.node text {
+path {
+  fill:rgb(154, 154, 154);
+}
+
+.node text, .linklabel{
   pointer-events: none;
-  font: 10px sans-serif;
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: black;
+}
+
+.linklabel {
+  font-size: 10px;
 }
