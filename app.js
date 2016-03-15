@@ -30,7 +30,7 @@ var links = [];
 var force = d3.layout.force()
     .nodes(nodes)
     .links(links)
-    .charge(-400)
+    .charge(-800)
     .linkDistance(120)
     .size([width, height])
     .on("tick", tick);
@@ -46,6 +46,8 @@ var node = svg.selectAll(".node")
 
 var path = svg.append('svg:g').selectAll('path');
 
+var linktext = svg.append("svg:g").selectAll("g.linklabelholder");
+
   
 function start() {
   force.nodes(nodes);
@@ -53,6 +55,7 @@ function start() {
   path = path.data(force.links());
   path.enter().append('svg:path')
     .attr('class', 'link')
+    .attr("id",function(d) { return "linkId_" + Math.floor((d.target.x + d.source.x) + (d.target.y + d.source.y)); })
     .style('marker-end','url(#end-arrow)')
   path.exit().remove();
 
@@ -67,6 +70,23 @@ function start() {
     .text(function(d) { return d.id });
 
   node.exit().remove();
+
+  linktext = linktext.data(force.links());
+  linktext.enter().append("g").attr("class", "linklabelholder")
+     .append("text")
+     .attr("class", "linklabel")
+     .style("font-size", "13px")
+     .attr("x", function(d) {return 45})
+     .attr("dy", "14")
+     .attr("text-anchor", "start")
+     .style("fill","#000")
+     .append("textPath")
+     .attr("xlink:href",function(d) {return "#linkId_" + Math.floor((d.target.x + d.source.x) + (d.target.y + d.source.y));})
+     .text(function(d) { 
+        return d.w; 
+     });
+  linktext.exit().remove();
+
 
   force.start();
 }
@@ -140,6 +160,7 @@ function updateGraph(){
       links.push({source: nodes[idMap[el[0]]], target: nodes[idMap[a[0]]], w: a[1]});
     })
   })
+  //Finall start it again with the updated info
   start();
 }
 
