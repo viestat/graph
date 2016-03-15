@@ -4,8 +4,6 @@ var nodes = graph.nodes.map(function(el){
   return {id: el[0]}
 });
 
-//layout size
-
 var width = 640;
 var height = 480;
 
@@ -26,10 +24,18 @@ var force = d3.layout.force()
     .size([width, height])
     .on("tick", tick);
 
-var node = svg.selectAll(".node");
+var node = svg.selectAll(".node")
+      .data(nodes)
+      .enter().append("g")
+      .attr("class", "node")
+      .call(force.drag);
+
+
+
+
 var link = svg.selectAll(".link");
 
-
+  
 function start() {
   force.nodes(nodes);
   force.links(links);
@@ -38,16 +44,22 @@ function start() {
   link.exit().remove();
 
   node = node.data(force.nodes(), function(d) { return d.id;});
-  node.enter().append("g").attr("class", function(d) { return "node " + d.id; });
-  node.append("circle").attr("r", 8)
+  node.enter().append("g").attr("class", function(d) { return "node " + d.id; }).call(force.drag);
+  node.append("circle")
+      .attr("r", 8)
+
+  node.append("text")
+    .attr("dx", 12)
+    .attr("dy", ".35em")
+    .text(function(d) { return d.id });
+
   node.exit().remove();
 
   force.start();
 }
 
 function tick() {
-  node.attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; })
+  node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
   link.attr("x1", function(d) { return d.source.x; })
       .attr("y1", function(d) { return d.source.y; })
@@ -84,6 +96,7 @@ function rmEdge(){
   var to = d3.select('#rmTo').property("value");
   if(from && to){
     graph.removeEdge(from, to);
+    updateGraph();
   }
 }
 function updateGraph(){
